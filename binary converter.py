@@ -31,11 +31,6 @@ while True:
             while bit >= 1:
                 binsum = binsum - bit
                 binary = binary + '1'
-                print('binsum ',binsum)
-
-                print('bit ',bit)
-
-                print('binary ',binary)
 
                 while bit > binsum:
                     bit = bit/2

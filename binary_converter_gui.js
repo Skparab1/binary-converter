@@ -169,30 +169,43 @@ function mousePressed(){
   }
   rect(460,680,200,70);
   if (mouseX > 460 && mouseX < 660 && mouseY > 760 && mouseY < 830){
-    getdecimal();
+    let num = string;
+    string = '';
+    text(getdecimal(num),1000,500);
   }
 }
 
-function getdecimal(){
-  var index = -1;
+function getdecimal(num){
+  var index = 0;
   var bit = 1;
-  var decimal = 0;
+  var decimal = 1;
   var element = '';
+  print('in');
+  print(index);
+  print(num.length);
+  print(num);
+  num = num;
+  let x = 0;
   
-    while (true){
+  while (x <= 100){
       try{
-        element = string.slice(index);
+        element = num.slice(index-1,index);
+        print('element ',element);
         if (element == '1'){
-          decimal += bit;
+          decimal = decimal + bit;
         }
         
         bit = bit * 2;
         index = index - 1;
+        x = x + 1;
+        
+        print('decimal ',decimal);
         
       } catch(error){
-        
+        print('broke');
         break;
       }
     }
-  string = str(decimal);
+  string = decimal;
+  return decimal;
 }

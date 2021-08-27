@@ -1,6 +1,7 @@
 // binary converter gui
 
 var string = '';
+var lines = 0;
 
 function setup() {
   createCanvas(2000,875);
@@ -16,7 +17,7 @@ function draw() {
   } else {
     textSize(150);
   }
-  text(string,1100,500);
+  text(string,1100,500 - lines);
   if (mouseX > 20 && mouseX < 220 && mouseY > 20 && mouseY < 220){
     fill(0,0,200);
   } else {
@@ -170,14 +171,49 @@ function mousePressed(){
   }
   rect(240,760,200,70);
   if (mouseX > 460 && mouseX < 660 && mouseY > 680 && mouseY < 750){
-    string = 'did binary';
+    let num = string;
+    text(getbinary(num),1000,500);
   }
   rect(460,680,200,70);
   if (mouseX > 460 && mouseX < 660 && mouseY > 760 && mouseY < 830){
     let num = string;
-    string = '';
     text(getdecimal(num),1000,500);
   }
+}
+
+function getbinary(num){
+  var index = -1;
+  var bit = 1;
+  var binary = '';
+  num = parseInt(num);
+  sum = 0;
+  binsum = num;
+  
+  while (bit <= num){
+      bit = bit*2;
+  }
+  bit = parseInt(bit/2);
+  
+  while (bit >= 1){
+    binsum = binsum - bit;
+    binary = binary + '1';
+    
+    print(bit);
+    
+    while (bit > binsum){
+      bit = bit/2;
+      
+      if (bit <= binsum || bit < 1){
+        break;
+      }else{
+        binary = binary + '0';
+    }
+  }
+}
+  print(binary);
+  string = string + '\n' + binary + '\n';
+  lines = lines + 50;
+  return binary;
 }
 
 function getdecimal(num){
@@ -185,17 +221,13 @@ function getdecimal(num){
   var bit = 1;
   var decimal = 1;
   var element = '';
-  print('in');
-  print(index);
-  print(num.length);
-  print(num);
+
   num = num;
   let x = 0;
-  
+ 
   while (x <= 100){
       try{
         element = num.slice(index-1,index);
-        print('element ',element);
         if (element == '1'){
           decimal = decimal + bit;
         }
@@ -204,13 +236,14 @@ function getdecimal(num){
         index = index - 1;
         x = x + 1;
         
-        print('decimal ',decimal);
-        
       } catch(error){
-        print('broke');
         break;
       }
     }
-  string = decimal;
+  if (num % 2 == 0){
+    decimal = decimal - 1;
+  }
+  string = string + '\n' + decimal + '\n';
+  lines = lines + 50;
   return decimal;
 }

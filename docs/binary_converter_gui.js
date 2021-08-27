@@ -12,12 +12,8 @@ function draw() {
   clear();
   fill(0);
   rect(0,0,700,850);
-  if (string.length > 9){
-    textSize(150 - (5*(string.length-9)));
-  } else {
-    textSize(150);
-  }
-  text(string,1100,500 - lines);
+  textSize(150);
+  text(string,1100,750 - lines);
   if (mouseX > 20 && mouseX < 220 && mouseY > 20 && mouseY < 220){
     fill(0,0,200);
   } else {
@@ -168,6 +164,7 @@ function mousePressed(){
   rect(240,680,200,70);
   if (mouseX > 240 && mouseX < 440 && mouseY > 760 && mouseY < 830){
     string = '';
+    lines = 0;
   }
   rect(240,760,200,70);
   if (mouseX > 460 && mouseX < 660 && mouseY > 680 && mouseY < 750){
@@ -212,7 +209,7 @@ function getbinary(num){
 }
   print(binary);
   string = string + '\n' + binary + '\n';
-  lines = lines + 50;
+  lines = lines + 150;
   return binary;
 }
 
@@ -244,6 +241,6 @@ function getdecimal(num){
     decimal = decimal - 1;
   }
   string = string + '\n' + decimal + '\n';
-  lines = lines + 50;
+  lines = lines + 150;
   return decimal;
 }

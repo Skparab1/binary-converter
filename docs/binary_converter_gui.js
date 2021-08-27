@@ -191,7 +191,7 @@ function getdecimal(num){
   print(num);
   num = num;
   let x = 0;
-  
+ 
   while (x <= 100){
       try{
         element = num.slice(index-1,index);
@@ -211,6 +211,9 @@ function getdecimal(num){
         break;
       }
     }
+  if (num % 2 == 0){
+    decimal = decimal - 1;
+  }
   string = decimal;
   return decimal;
 }

@@ -11,8 +11,12 @@ function draw() {
   clear();
   fill(0);
   rect(0,0,700,850);
-  textSize(150);
-  text(string,1000,500);
+  if (string.length > 9){
+    textSize(150 - (5*(string.length-9)));
+  } else {
+    textSize(150);
+  }
+  text(string,1100,500);
   if (mouseX > 20 && mouseX < 220 && mouseY > 20 && mouseY < 220){
     fill(0,0,200);
   } else {
@@ -98,6 +102,7 @@ function draw() {
   }
   rect(460,760,200,70);
   fill(255);
+  textSize(150);
   text('7',75,175);
   text('8',275,175);
   text('9',475,175);
@@ -110,7 +115,7 @@ function draw() {
   text('0',75,800);
   textSize(45);
   text('Delete',275,740);
-  text('Erase',275,810);
+  text('Reset',275,810);
   text('Binary',475,740);
   text('Decimal',475,810);
 }

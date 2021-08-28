@@ -3,6 +3,7 @@
 var string = '';
 var lines = 0;
 var sendstring = '';
+var lastlength = 0;
 
 function setup() {
   createCanvas(2000,875);
@@ -15,7 +16,7 @@ function draw() {
   rect(0,0,700,850);
   textSize(150);
   if (sendstring.length >= 12){
-    textSize(150-(5*(sendstring.length-10)));
+    textSize(150-(5*(lastlength-10)));
   }
   text(string,850,750 - lines);
   if (mouseX > 20 && mouseX < 220 && mouseY > 20 && mouseY < 220){
@@ -185,6 +186,9 @@ function mousePressed(){
     lines = 0;
   }
   rect(240,760,200,70);
+  if (sendstring != ''){
+    lastlength = sendstring.length;
+  }
   if (mouseX > 700 && mouseX < 825 && mouseY > 0 && mouseY < 425){
     let num = sendstring;
     string = string + '  -> B';
@@ -213,7 +217,6 @@ function getbinary(num){
   
   var isbinary = true;
   
-  if (isbinary){
   while (bit >= 1 ){
     binsum = binsum - bit;
     binary = binary + '1';
@@ -229,12 +232,18 @@ function getbinary(num){
         binary = binary + '0';
     }
   }
-}
-string = string + '\n' + binary + '\n';
   }
-  print(binary);
+if (binary.length <= 14){
+  string = string + '\n' + binary + '\n';
   lines = lines + 375;
+} else{
+  string = string + '\n' + binary.slice(0,14) + '-\n-' + binary.slice(14,30) + '-\n-' ;
+  lines = lines + (375*2);
+} 
+  print(binary);
+  
   sendstring = '';
+  lastlength = binary.length;
   return binary;
 }
 
@@ -276,11 +285,7 @@ function getdecimal(num){
     decimal = decimal - 1;
   } 
   
-  if (isbinary == false){
-    string = string + '\nErr: input not binary\n';
-  } else {
    string = string + '\n' + decimal + '\n';
-  }
   lines = lines + 375;
   sendstring = '';
   return decimal;

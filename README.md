@@ -1,7 +1,7 @@
 # binary-converter
 
-Binary converter for cs class
-Right now works with any amount of bits
+- Binary converter for cs class
+- Right now works with any amount of bits
 
 In python, Gui in javascript
 

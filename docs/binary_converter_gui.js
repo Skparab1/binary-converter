@@ -290,3 +290,15 @@ function getdecimal(num){
   sendstring = '';
   return decimal;
 }
+
+function keyTyped(){
+  if (keyCode != ENTER){
+    string += key;
+  }
+}
+
+function keyReleased(){
+  if (keyCode == BACKSPACE){
+  string = string.substring(0, string.length -1);
+  }
+}
